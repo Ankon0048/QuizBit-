@@ -1,1 +1,8 @@
 git checkout <branch-name>
+git add .
+git commit -m "<message>"
+git push origin ankon
+
+
+python manage.py runserver
+python manage.py migrate
