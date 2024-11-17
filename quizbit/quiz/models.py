@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ValidationError
-from .models import Users, Questions
+from django.core.validators import RegexValidator
 import re
 
 
@@ -43,9 +43,9 @@ class Questions(models.Model):
         super().save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
-        """
-        This function ensures to fix ques_number values after deletion.
-        """
+
+        # This function ensures to fix ques_number values after deletion.
+
         super().delete(*args, **kwargs)
 
         # Adjust ques_number for remaining questions
@@ -70,7 +70,7 @@ class Users(models.Model):
         max_length=15,
         unique=True,
         validators=[
-            models.RegexValidator(
+            RegexValidator(
                 regex=r'^[a-zA-Z0-9_.]+$',
                 message="Username can only contain letters, numbers, underscores, and dots.",
             )
@@ -99,10 +99,10 @@ class Users(models.Model):
 
 class History(models.Model):
     # Foreign key referencing the Users table
-    user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
+    user_id = models.ForeignKey('Users', on_delete=models.CASCADE)
 
     # Foreign key referencing the Questions table
-    ques_id = models.ForeignKey(Questions, on_delete=models.CASCADE)
+    ques_id = models.ForeignKey('Questions', on_delete=models.CASCADE)
 
     # Answer provided by the user
     answer = models.PositiveIntegerField()

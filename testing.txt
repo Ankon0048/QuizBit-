@@ -6,3 +6,7 @@ git push origin ankon
 
 python manage.py runserver
 python manage.py migrate
+python manage.py makemigrations
+
+pip install django
+pip install djangorestframework
