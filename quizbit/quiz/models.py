@@ -134,7 +134,7 @@ class History(models.Model):
     ques_id = models.ForeignKey('Questions', on_delete=models.CASCADE)
 
     # Answer provided by the user
-    answer = models.PositiveIntegerField()
+    user_answer = models.PositiveIntegerField()
 
     # Boolean field for correctness
     is_correct = models.BooleanField(default=False)
@@ -149,7 +149,7 @@ class History(models.Model):
 
         # Check if the user's answer matches the correct answer
         correct_answer = self.ques_id.ques_answer  # Get correct answer from the related question
-        self.is_correct = (self.answer == correct_answer)
+        self.is_correct = (self.user_answer == correct_answer)
 
         super().save(*args, **kwargs)
 
