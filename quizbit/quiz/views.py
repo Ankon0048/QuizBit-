@@ -50,11 +50,15 @@ class SubmitAnswerView(APIView):
 class UserHistoryView(APIView):
     def get(self, request, user_id):
         try:
+            # Get the user by user_id
             user = Users.objects.get(user_id=user_id)
         except Users.DoesNotExist:
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
-        
+
+        # Filter history records for the user
         history = History.objects.filter(user_id=user)
+
+        # Serialize the history with the updated serializer
         serializer = HistorySerializer(history, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     

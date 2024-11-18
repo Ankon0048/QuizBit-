@@ -18,12 +18,13 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 # Converts model instances into JSON format and validates input for Questions-related operations.
 class HistorySerializer(serializers.ModelSerializer):
-
-    # Used PrimaryKeyRelatedField to represent relationships (ForeignKey) to other models
-    user_id = serializers.PrimaryKeyRelatedField(queryset=Users.objects.all())
-    ques_id = serializers.PrimaryKeyRelatedField(queryset=Questions.objects.all())
+    # Include fields from the related Questions model
+    ques_title = serializers.CharField(source="ques_id.ques_title", read_only=True)
+    ques_number = serializers.IntegerField(source="ques_id.ques_number", read_only=True)
+    ques_difficulty = serializers.CharField(source="ques_id.ques_difficulty", read_only=True)
+    ques_category = serializers.CharField(source="ques_id.ques_category", read_only=True)
+    ques_answer = serializers.IntegerField(source="ques_id.ques_answer", read_only=True)
 
     class Meta:
         model = History
-        fields = ['user_id', 'ques_id', 'answer', 'is_correct']
-        read_only_fields = ['is_correct']
+        fields = ['user_id','ques_id','ques_number','ques_title', 'ques_difficulty','ques_category','ques_answer', 'user_answer', 'is_correct']
