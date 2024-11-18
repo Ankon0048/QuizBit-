@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Questions
-        fields = ['ques_id', 'ques_number', 'ques_title', 'ques_detail', 'ques_option', 'ques_answer']
+        fields = ['ques_id', 'ques_number', 'ques_title', 'ques_detail', 'ques_option', 'ques_answer', 'ques_difficulty', 'ques_category']
 
 
 # Converts model instances into JSON format and validates input for Questions-related operations.

@@ -11,7 +11,7 @@ class Questions(models.Model):
     ques_id = models.AutoField(primary_key=True)
 
     # Field for question number
-    # This field is for listing the number of questions and showing question number
+    # This field is for showing question number
     ques_number = models.PositiveIntegerField(unique=True)
 
     # Field for question title
@@ -19,7 +19,7 @@ class Questions(models.Model):
     ques_title = models.TextField()
 
     # Field for question details
-    # This field is for retrieving details about the question
+    # This field is for showing additional information about the question
     ques_detail = models.TextField()
 
     # Array field for 4 string options (MCQ having 4 options)
@@ -29,6 +29,35 @@ class Questions(models.Model):
     # Field for the index of the correct answer
     # This field holds the index for the correct answer option
     ques_answer = models.PositiveIntegerField()
+
+
+    # Field for question difficulty
+    # This can take only three values: Easy, Medium, Hard (For now it's statically defined)
+    DIFFICULTY_CHOICES = [
+        ('Easy', 'Easy'),
+        ('Medium', 'Medium'),
+        ('Hard', 'Hard'),
+    ]
+    ques_difficulty = models.CharField(
+        max_length=10,
+        choices=DIFFICULTY_CHOICES,
+        default='Medium',
+    )
+
+    # Field for question category
+    # This can take a predefined range of string values (For now it's statically defined)
+    CATEGORY_CHOICES = [
+        ('Math', 'Math'),
+        ('Science', 'Science'),
+        ('History', 'History'),
+        ('Geography', 'Geography'),
+        ('Technology', 'Technology'),
+    ]
+    ques_category = models.CharField(
+        max_length=20,
+        choices=CATEGORY_CHOICES,
+        default='Math',
+    )
 
     def save(self, *args, **kwargs):
         """
