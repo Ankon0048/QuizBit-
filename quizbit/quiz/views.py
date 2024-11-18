@@ -97,7 +97,9 @@ class CreateQuestionAPIView(APIView):
                 ques_title=data['ques_title'],
                 ques_detail=data['ques_detail'],
                 ques_option=data['ques_option'],
-                ques_answer=data['ques_answer']
+                ques_answer=data['ques_answer'],
+                ques_difficulty=data['ques_difficulty'],
+                ques_category=data['ques_category']
             )
             return Response({"message": "Question created successfully", "ques_id": question.ques_id}, status=status.HTTP_201_CREATED)
         except KeyError:
