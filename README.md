@@ -5,7 +5,8 @@ A backend Restful API for an online platform based on practicing MCQ questions
 
 ### System Requirements
 - Python 3.8 or later
-- PostgreSQL database
+- Postgresql (Optional)
+- Postman
 
 ### Python Package Dependencies
 - Django
@@ -14,11 +15,19 @@ A backend Restful API for an online platform based on practicing MCQ questions
 
 ## Installation Guide
 
-### 1. Clone the Repository
+### 1. Clone the repository
 ```bash
 git clone https://github.com/your-username/quizbit.git
+```
+### 2. Install the required libraries
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Go to the quizbit folder
+```bash
 cd quizbit
-python manage.py makemigrations
-python manage.py migrate
-python manage.py createsuperuser
+```
+### 4. Run the below command to start the project
+```bash
 python manage.py runserver
