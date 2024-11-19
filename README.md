@@ -119,3 +119,6 @@ http://127.0.0.1:8000/user-history/3/
 | `is_correct`| BooleanField | True if the user's answer matches the correct answer. |
 
 ---
+
+## UML_Diagram
+![UML_Diagram](Images/UML_Diagram.jpg)
